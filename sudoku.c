@@ -51,15 +51,15 @@ int is_valid(Node* n){
     for(int j = 0; j < 10; j++){
       numVisto[j] = 0;
     }
-  } for(int k = 0; k < 9; k++){
-    int num = n->sudo[i][k];
-    if (num != 0){
-      if(numVisto[num] == 1){
-        return 0;
-      }
-      numVisto[num] = 1;
+    for(int k = 0; k < 9; k++){
+      int num = n->sudo[i][k];
+      if(num != 0){
+        if(numVisto[num] == 1){
+          return 0;
+        }
+        numVisto[num] = 1;
+      }  
     }
-  }
 
   return 1;
 }
