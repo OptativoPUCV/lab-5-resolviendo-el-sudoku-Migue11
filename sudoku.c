@@ -60,7 +60,7 @@ int is_valid(Node* n){
         numVisto[num] = 1;
       }  
     }
-
+  }
   return 1;
 }
 
