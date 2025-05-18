@@ -133,3 +133,18 @@ Sun, May 18, 2025 10:47:25 AM:
  tests:  4|3
 total_score: 30/70
 5d7dc60
+Sun, May 18, 2025 10:49:46 AM: 
+ sudoku.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'is_valid':
+sudoku.c:83:7: error: 'k' undeclared (first use in this function)
+   83 |   for(k = 0; k < 9; k++){
+      |       ^
+sudoku.c:83:7: note: each undeclared identifier is reported only once for each function it appears in
+test.c: At top level:
+test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+eba3dff
