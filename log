@@ -83,3 +83,23 @@ sudoku.c:92:5: warning: 'main' defined but not used [-Wunused-function]
    92 | int main( int argc, char *argv[] ){
       |     ^~~~
 4588985
+Sun, May 18, 2025 12:58:42 AM: 
+ sudoku.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+Compilation failed
+test.c: In function 'is_valid':
+test.c:245:5: warning: 'main' is normally a non-static function [-Wmain]
+  245 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:262:1: error: expected declaration or statement at end of input
+  262 | }
+      | ^
+test.c:264: warning: control reaches end of non-void function [-Wreturn-type]
+test.c: At top level:
+test.c:245:5: warning: 'main' defined but not used [-Wunused-function]
+  245 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:7:8: warning: '_strdup' defined but not used [-Wunused-function]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+7bc2305
