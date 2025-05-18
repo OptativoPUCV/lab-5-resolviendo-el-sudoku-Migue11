@@ -98,6 +98,9 @@ List* get_adj_nodes(Node* n){
             }
         }
     }
+    if(posX == -1 && posY == -1){
+        return list;
+    }
     for(int i = 1; i <= 9; i++){
         Node* newNode = copy(n);
         newNode->sudo[posX][posY] = i;
