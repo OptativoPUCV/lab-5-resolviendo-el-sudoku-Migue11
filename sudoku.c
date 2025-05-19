@@ -45,12 +45,6 @@ void print_node(Node* n){
 
 int is_valid(Node* n){
 
-  if(val == 0) continue;
-  if(seen[val]) {
-    printf("Valor repetido en subcuadro: %d\n", val);
-    return 0;
-  }
-
   // En las siguientes itreaciones confirmaremos las filas
   for(int i = 0; i < 9; i++){
     int numVisto[10];
@@ -86,6 +80,10 @@ int is_valid(Node* n){
     }
   }
 
+  // En esta funcion vamos a validar las "submatrices" de 3x3
+  // Marcaremos los valores que ya fueron vistos en esa submatriz 
+  // obtenemos la celda luego ya nos saltamos esas celdas vacias 
+  // y a ese valor le colocamos la marca de que ya fue visto
   for(int k = 0; k < 9; k++){
       int seen[10] = {0};
       for(int p = 0; p < 9; p++){
@@ -95,15 +93,20 @@ int is_valid(Node* n){
           if(val == 0) continue;
           if(seen[val]) return 0;
           seen[val] = 1;
+          
       }
   }  
 
   
   return 1;
+
+
 }
 
+// En esta funcion usamos 2 variables para guardar la poscion, recorremos filas
+// y si encontramos un 0 vamos a guardar si la fila y columna
 
-List* get_adj_nodes(Node* n){
+List* get_adj_nodes(Node* n){ 
   List* list = createList();
   int posX = -1;
   int posY = -1;
@@ -119,6 +122,10 @@ List* get_adj_nodes(Node* n){
   if(posX == -1){
       return list;
   }
+
+  // Aqui vamos a llenar la casilla con valores del 1 al 9
+  // Entonces creamos una copia del nodo y le insertamos un probable valor en esa casilla
+  // Luego el nuevo nodo nos quedaria en la lista de los adyacentes
   for(int i = 1; i <= 9; i++){
       Node* newNode = copy(n);
       newNode->sudo[posX][posY] = i;
@@ -142,28 +149,33 @@ int is_final(Node* n){
     }
     return 1;
 }
+
+// Lo que haremois aqui es crear una pila para luego insertar el nodo inicial de la pila
+// mientras que la pila no este vacia sacaremos el top de la pila, lo retiramos y seguimos con el siguiente
+// Si el nodo es final entonces retornamos el nodo
+// Si no es final entonces obtenemos los nodos adyacentes y los insertamos en la pila
 Node* DFS(Node* initial, int* cont){
-  Stack* stack = createStack();         // Creamos una pila para hacer DFS
-  push(stack, initial);                 // Insertamos el nodo inicial en la pila
+  Stack* stack = createStack();         
+  push(stack, initial);                
 
-  while(!is_empty(stack)){              // Mientras la pila no esté vacía
-      Node* current = top(stack);       // Obtenemos el nodo en el tope de la pila
-      pop(stack);                       // Lo retiramos de la pila
-      (*cont)++;                        // Contamos esta iteración
+  while(!is_empty(stack)){              
+      Node* current = top(stack);       
+      pop(stack);                       
+      (*cont)++;                        
 
-      if(is_final(current))            // Si el nodo es solución final (no hay ceros)
-          return current;              // Retornamos la solución
+      if(is_final(current))            
+          return current;              
 
-      List* adj = get_adj_nodes(current); // Obtenemos nodos adyacentes (posibles jugadas)
-      Node* adjNode = first(adj);         // Iteramos por cada nodo generado
+      List* adj = get_adj_nodes(current); 
+      Node* adjNode = first(adj);         
 
       while(adjNode != NULL){
-          push(stack, adjNode);          // Los agregamos a la pila para seguir explorando
-          adjNode = next(adj);           // Siguiente nodo adyacente
+          push(stack, adjNode);          
+          adjNode = next(adj);           
         }
 
-      free(adj);                          // Liberamos la lista de adyacentes
-      free(current);                      // Liberamos el nodo actual si no es solución
+      free(adj);                          
+      free(current);                      
     }
 
     return NULL; // Si no se encuentra solución
