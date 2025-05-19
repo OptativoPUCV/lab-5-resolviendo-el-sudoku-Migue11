@@ -148,12 +148,12 @@ Node* DFS(Node* initial, int* cont){
       return current;
     }
     List* adj = get_adj_nodes(current);
-    Node* next = get(adj, i);
-    for(int i = 0; i < adj->size; i++){
-      pushFront(stack, next);
+    Node* node = adj->head;
+    while(node != NULL){
+      push(stack, node->data);
+      node = node->next;
     }
-    free(current);
-  }
+  return NULL;  
 }
 
 
