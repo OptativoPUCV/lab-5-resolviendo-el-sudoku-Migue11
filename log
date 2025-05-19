@@ -342,3 +342,26 @@ test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous 
     7 | char * _strdup(const char * str) {
       |        ^~~~~~~
 1a237aa
+Sun, May 18, 2025 11:37:37 PM: 
+ sudoku.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'DFS':
+sudoku.c:145:21: error: void value not ignored as it ought to be
+  145 |     Node* current = popBack(stack);
+      |                     ^~~~~~~
+sudoku.c:151:21: error: invalid use of incomplete typedef 'List'
+  151 |     Node* node = adj->head;
+      |                     ^~
+sudoku.c:153:35: error: 'Node' has no member named 'data'
+  153 |       Node* newNode = (Node*) node->data;
+      |                                   ^~
+sudoku.c:159:18: error: 'Node' has no member named 'next'
+  159 |       node = node->next;
+      |                  ^~
+test.c: At top level:
+test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+d9586bd

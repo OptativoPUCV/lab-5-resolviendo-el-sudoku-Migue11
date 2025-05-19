@@ -148,10 +148,15 @@ Node* DFS(Node* initial, int* cont){
       return current;
     }
     List* adj = get_adj_nodes(current);
-    Node * adjNode = first(adj);
-    while(adjNode){
-      pushFront(stack, adjNode);  
-      adjNode = next(adj);
+    Node* node = adj->head;
+    while(node != NULL){
+      Node* newNode = (Node*) node->data;
+      if(is_valid(newNode)){
+        push(stack, newNode);
+      }else{
+        free(newNode);
+      }
+      node = node->next;
     }
   }    
   return NULL;  
