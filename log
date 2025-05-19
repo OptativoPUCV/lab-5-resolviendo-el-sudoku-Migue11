@@ -419,3 +419,24 @@ Sun, May 18, 2025 11:40:40 PM:
  tests:  7|2
 total_score: 45/70
 7c35d26
+Sun, May 18, 2025 11:44:57 PM: 
+ sudoku.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'is_valid':
+sudoku.c:48:6: error: 'val' undeclared (first use in this function)
+   48 |   if(val == 0) continue;
+      |      ^~~
+sudoku.c:48:6: note: each undeclared identifier is reported only once for each function it appears in
+sudoku.c:48:16: error: continue statement not within a loop
+   48 |   if(val == 0) continue;
+      |                ^~~~~~~~
+sudoku.c:49:6: error: 'seen' undeclared (first use in this function)
+   49 |   if(seen[val]) {
+      |      ^~~~
+test.c: At top level:
+test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+4228d06

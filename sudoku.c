@@ -45,6 +45,12 @@ void print_node(Node* n){
 
 int is_valid(Node* n){
 
+  if(val == 0) continue;
+  if(seen[val]) {
+    printf("Valor repetido en subcuadro: %d\n", val);
+    return 0;
+  }
+
   // En las siguientes itreaciones confirmaremos las filas
   for(int i = 0; i < 9; i++){
     int numVisto[10];
@@ -98,7 +104,7 @@ int is_valid(Node* n){
 
 
 List* get_adj_nodes(Node* n){
-  List* list=createList();
+  List* list = createList();
   int posX = -1;
   int posY = -1;
   for(int i = 0; i < 9; i++){
@@ -122,6 +128,7 @@ List* get_adj_nodes(Node* n){
           free(newNode);
       }
   }
+
   return list;
 }
 
