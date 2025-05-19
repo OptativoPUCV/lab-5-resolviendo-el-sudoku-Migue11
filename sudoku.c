@@ -139,7 +139,7 @@ int is_final(Node* n){
 
 Node* DFS(Node* initial, int* cont){
   Stack* stack = createStack();
-  push(stack, initial);
+  pushFront(stack, initial);
 
   while(!is_empty(stack)){
     Node* current = popBack(stack);
@@ -151,7 +151,7 @@ Node* DFS(Node* initial, int* cont){
     for(int i = 0; i < adj->size; i++){
       Node* newNode = (Node*) get(adj, i);
       if(is_valid(newNode)){
-        push(stack, newNode);
+        pushFront(stack, newNode);
       }else{
         free(newNode);
       }
