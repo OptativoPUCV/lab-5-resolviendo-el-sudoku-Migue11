@@ -142,13 +142,13 @@ Node* DFS(Node* initial, int* cont){
   push(stack, initial);
 
   while(!isEmpty(stack)){
-    Node* current = pop(stack);
+    Node* current = popBack(stack);
     (*cont)++;
     if(is_final(current)){
       return current;
     }
     List* adj = get_adj_nodes(current);
-    Node * adjNode = frist(adj);
+    Node * adjNode = first(adj);
     while(adjNode){
       pushfront(stack, adjNode);  
       adjNode = next(adj);
