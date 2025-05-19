@@ -224,3 +224,40 @@ test.c:7:8: warning: '_strdup' defined but not used [-Wunused-function]
     7 | char * _strdup(const char * str) {
       |        ^~~~~~~
 81483fe
+Sun, May 18, 2025 11:34:09 PM: 
+ sudoku.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'DFS':
+sudoku.c:144:10: error: implicit declaration of function 'isEmpty'; did you mean 'is_empty'? [-Wimplicit-function-declaration]
+  144 |   while(!isEmpty(stack)){
+      |          ^~~~~~~
+      |          is_empty
+sudoku.c:145:21: error: void value not ignored as it ought to be
+  145 |     Node* current = pop(stack);
+      |                     ^~~
+sudoku.c:151:22: error: implicit declaration of function 'frist'; did you mean 'first'? [-Wimplicit-function-declaration]
+  151 |     Node * adjNode = frist(adj);
+      |                      ^~~~~
+      |                      first
+sudoku.c:151:22: error: initialization of 'Node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+sudoku.c:153:7: error: implicit declaration of function 'pushfront'; did you mean 'pushFront'? [-Wimplicit-function-declaration]
+  153 |       pushfront(stack, adjNode);
+      |       ^~~~~~~~~
+      |       pushFront
+test.c:245:5: warning: 'main' is normally a non-static function [-Wmain]
+  245 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:262:1: error: expected declaration or statement at end of input
+  262 | }
+      | ^
+test.c:264: warning: control reaches end of non-void function [-Wreturn-type]
+test.c: At top level:
+test.c:245:5: warning: 'main' defined but not used [-Wunused-function]
+  245 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:7:8: warning: '_strdup' defined but not used [-Wunused-function]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+df6b9b5
