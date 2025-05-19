@@ -310,3 +310,21 @@ test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous 
     7 | char * _strdup(const char * str) {
       |        ^~~~~~~
 1df68a0
+Sun, May 18, 2025 11:35:30 PM: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'DFS':
+sudoku.c:145:21: error: void value not ignored as it ought to be
+  145 |     Node* current = popBack(stack);
+      |                     ^~~~~~~
+sudoku.c:153:7: error: implicit declaration of function 'pushfront'; did you mean 'pushFront'? [-Wimplicit-function-declaration]
+  153 |       pushfront(stack, adjNode);
+      |       ^~~~~~~~~
+      |       pushFront
+test.c: At top level:
+test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+5df0743
