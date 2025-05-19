@@ -135,30 +135,33 @@ int is_final(Node* n){
     }
     return 1;
 }
-
-
 Node* DFS(Node* initial, int* cont){
-  Stack* stack = createStack();
-  pushFront(stack, initial);
+  Stack* stack = createStack();         // Creamos una pila para hacer DFS
+  push(stack, initial);                 // Insertamos el nodo inicial en la pila
 
-  while(!is_empty(stack)){
-    Node* current = popBack(stack);
-    (*cont)++;
-    if(is_final(current)){
-      return current;
+  while(!is_empty(stack)){              // Mientras la pila no esté vacía
+      Node* current = top(stack);       // Obtenemos el nodo en el tope de la pila
+      pop(stack);                       // Lo retiramos de la pila
+      (*cont)++;                        // Contamos esta iteración
+
+      if(is_final(current))            // Si el nodo es solución final (no hay ceros)
+          return current;              // Retornamos la solución
+
+      List* adj = get_adj_nodes(current); // Obtenemos nodos adyacentes (posibles jugadas)
+      Node* adjNode = first(adj);         // Iteramos por cada nodo generado
+
+      while(adjNode != NULL){
+          push(stack, adjNode);          // Los agregamos a la pila para seguir explorando
+          adjNode = next(adj);           // Siguiente nodo adyacente
+        }
+
+      free(adj);                          // Liberamos la lista de adyacentes
+      free(current);                      // Liberamos el nodo actual si no es solución
     }
-    List* adj = get_adj_nodes(current);
-    for(int i = 0; i < adj->size; i++){
-      Node* newNode = (Node*) get(adj, i);
-      if(is_valid(newNode)){
-        pushFront(stack, newNode);
-      }else{
-        free(newNode);
-      }
-    }
-  }    
-  return NULL;  
+
+    return NULL; // Si no se encuentra solución
 }
+
 // int main( int argc, char *argv[] ){
 
 //   Node* initial= read_file("s12a.txt");;
